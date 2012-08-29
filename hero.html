@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title></title>
+		<script src="js/ichart-1.0.min.js"></script>
+		<script src="js/jquery-1.7.2.min.js"></script>
+		<script>
+		var data = [
+		{name : '1',value : 7,color:'#a5c2d5'},
+	   	{name : '2',value : 5,color:'#cbab4f'},
+	   	{name : '3',value : 12,color:'#76a871'},
+	   	{name : '4',value : 12,color:'#76a871'},
+	   	{name : '5',value : 15,color:'#a56f8f'},
+	   	{name : '6',value : 13,color:'#c12c44'},
+	   	{name : '7',value : 15,color:'#a56f8f'},
+	   	{name : '8',value : 18,color:'#9f7961'}
+	 ];
+	 $(function(){	
+		var chart = new iChart.Column2D({
+			render : 'canvasDiv',//渲染的Dom目标,canvasDiv为Dom的ID
+			data: data,//绑定数据
+			title : 'hero chose',//设置标题
+			width : 800,//设置宽度，默认单位为px
+			height : 400,//设置高度，默认单位为px
+			coordinate:{//配置自定义坐标轴
+				scale:[{//配置自定义值轴
+					 position:'left',//配置左值轴	
+					 start_scale:0,//设置开始刻度为0
+					 end_scale:60,//设置结束刻度为26
+					 scale_space:10,//设置刻度间距
+					 listeners:{//配置事件
+						parseText:function(t,x,y){//设置解析值轴文本
+							return {text:t}
+						}
+					}
+				}]
+			}
+		});
+		//调用绘图方法开始绘图
+		chart.draw();
+	});
+	
+		</script>
+	</head>
+	<body>
+		<div id='canvasDiv'></div>	
+	</body>
+</html>
